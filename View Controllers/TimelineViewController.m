@@ -14,7 +14,7 @@
 @interface TimelineViewController ()
 
 - (IBAction)tappedLogout:(UIButton *)sender;
-@property (nonatomic, strong) NSArray *arrayOfTweets;
+@property (nonatomic, strong) NSMutableArray *arrayOfTweets;
 
 @end
 
@@ -27,10 +27,11 @@
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             for (NSDictionary *dictionary in tweets) {
-                NSMutableArray *text = dictionary[@"text"];
-                NSLog(@"%@", text);
+//                NSString *text = dictionary[@"text"];
+                
+                NSLog(@"%@", dictionary);
             }
-            self.arrayOfTweets = tweets;
+            self.arrayOfTweets = (NSMutableArray *) tweets;
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
