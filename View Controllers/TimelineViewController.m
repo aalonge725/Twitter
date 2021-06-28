@@ -13,7 +13,7 @@
 
 @interface TimelineViewController ()
 
-@property (nonatomic, strong)NSMutableArray *tweets;
+@property (nonatomic, strong) NSArray *arrayOfTweets;
 
 @end
 
@@ -29,6 +29,7 @@
                 NSMutableArray *text = dictionary[@"text"];
                 NSLog(@"%@", text);
             }
+            self.arrayOfTweets = tweets;
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
