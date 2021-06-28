@@ -13,6 +13,7 @@
 
 @interface TimelineViewController ()
 
+- (IBAction)tappedLogout:(UIButton *)sender;
 @property (nonatomic, strong) NSArray *arrayOfTweets;
 
 @end
@@ -41,7 +42,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)tappedLogout {
+//- (void)tappedLogout {
+//    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//    appDelegate.window.rootViewController = loginViewController;
+//
+//    // clears out the access tokens
+//    [[APIManager shared] logout];
+//}
+
+- (IBAction)tappedLogout:(UIButton *)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

@@ -82,6 +82,9 @@
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="tappedLogout:" destination="Lbl-k5-U4i" eventType="touchUpInside" id="OTa-mK-ez0"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
