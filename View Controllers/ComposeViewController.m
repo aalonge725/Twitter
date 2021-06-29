@@ -7,6 +7,7 @@
 //
 
 #import "ComposeViewController.h"
+#import "APIManager.h"
 
 @interface ComposeViewController ()
 
@@ -34,6 +35,16 @@
 */
 
 - (IBAction)tappedTweet:(UIBarButtonItem *)sender {
+    [[APIManager shared] postStatusWithText:self.tweetTextView.text completion:^(Tweet *tweet, NSError *error) {
+        if(error) {
+            NSLog(@"😫😫😫 Error posting tweet: %@", error.localizedDescription);
+            // TODO: handle error
+        } else {
+            [self.delegate didTweet:tweet];
+            NSLog(@"😎😎😎 Successfully posted tweet");
+            [self dismissViewControllerAnimated:true completion:nil];
+        }
+    }];
     
 }
 
