@@ -1,11 +1,3 @@
-//
-//  TimelineViewController.m
-//  twitter
-//
-//  Created by emersonmalca on 5/28/18.
-//  Copyright © 2018 Emerson Malca. All rights reserved.
-//
-
 #import "TimelineViewController.h"
 #import "APIManager.h"
 #import "AppDelegate.h"
@@ -75,13 +67,17 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
+    cell.tweet = tweet;
+    
+    // TODO: add to a model
     cell.nameLabel.text = tweet.user.name;
-    cell.screenNameLabel.text = tweet.user.screenName;
+    cell.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     cell.dateLabel.text = tweet.createdAtString;
     cell.tweetTextLabel.text = tweet.text;
-//    cell.replyCountLabel = tweet.
     cell.retweetCountLabel.text = [@(tweet.retweetCount) stringValue];
     cell.favoriteCountLabel.text = [@(tweet.favoriteCount) stringValue];
+    [cell.retweetView setSelected:tweet.retweeted];
+    [cell.likeView setSelected:tweet.favorited];
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
