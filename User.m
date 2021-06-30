@@ -1,11 +1,3 @@
-//
-//  User.m
-//  twitter
-//
-//  Created by Abraham Alonge on 6/28/21.
-//  Copyright © 2021 Emerson Malca. All rights reserved.
-//
-
 #import "User.h"
 
 @implementation User

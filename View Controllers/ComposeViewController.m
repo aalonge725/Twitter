@@ -1,11 +1,3 @@
-//
-//  ComposeViewController.m
-//  twitter
-//
-//  Created by Abraham Alonge on 6/29/21.
-//  Copyright © 2021 Emerson Malca. All rights reserved.
-//
-
 #import "ComposeViewController.h"
 #import "APIManager.h"
 
