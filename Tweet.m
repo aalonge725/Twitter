@@ -32,9 +32,9 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
-        if ([[NSDate new] hoursLaterThan:date] < 24.0) {
+        if ([[NSDate new] hoursLaterThan:date] < 24) {
             self.createdAtString = [NSDate shortTimeAgoSinceDate:date];
-        } else if ([[NSDate new] yearsLaterThan:date] == 0.0) {
+        } else if ([[NSDate new] yearsLaterThan:date] == 0) {
             self.createdAtString = [date formattedDateWithFormat:@"MMM d"];
         } else {
             self.createdAtString = [date formattedDateWithStyle:NSDateFormatterShortStyle];
