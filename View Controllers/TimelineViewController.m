@@ -82,7 +82,6 @@
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     cell.profilePictureView.image = [UIImage imageWithData:urlData];
-    
     return cell;
     
 }
