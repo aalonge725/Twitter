@@ -13,7 +13,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tweetTextView.delegate = self;
+        
+    self.tweetTextView.layer.borderWidth = 2.0f;
+    self.tweetTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.tweetTextView.layer.cornerRadius = 5;
+    
+    [self.tweetTextView becomeFirstResponder];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+        int characterLimit = 280;
+
+        NSString *newText = [self.tweetTextView.text stringByReplacingCharactersInRange:range withString:text];
+
+        if (newText.length <= characterLimit) {
+            NSInteger charactersLeft = 280 - newText.length;
+            self.charCountLabel.text = [NSString stringWithFormat:@"%d", (int)charactersLeft];
+            return true;
+        } else {
+            return false;
+        }
 }
 
 /*
@@ -30,7 +50,6 @@
     [[APIManager shared] postStatusWithText:self.tweetTextView.text completion:^(Tweet *tweet, NSError *error) {
         if(error) {
             NSLog(@"😫😫😫 Error posting tweet: %@", error.localizedDescription);
-            // TODO: handle error
         } else {
             [self.delegate didTweet:tweet];
             NSLog(@"😎😎😎 Successfully posted tweet");
