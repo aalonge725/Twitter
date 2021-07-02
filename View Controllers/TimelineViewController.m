@@ -28,6 +28,13 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    NSIndexPath *selectedIndPath = self.tableView.indexPathForSelectedRow;
+    if (selectedIndPath) {
+        [self.tableView deselectRowAtIndexPath:selectedIndPath animated:animated];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -102,9 +109,15 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
     if ([segue.identifier  isEqual: @"ComposeViewControllerSegue"]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Tweet *tweet = self.arrayOfTweets[indexPath.row];
+        
         UINavigationController *navigationController = [segue destinationViewController];
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        
         composeController.delegate = self;
     } else if ([segue.identifier isEqual: @"DetailsViewControllerSegue"]) {
         UITableViewCell *tappedCell = sender;
@@ -112,6 +125,7 @@
         Tweet *tweet = self.arrayOfTweets[indexPath.row];
         
         DetailsViewController *detailViewController = [segue destinationViewController];
+        
         detailViewController.delegate = self;
         
         detailViewController.tweet = tweet;
