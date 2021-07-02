@@ -1,19 +1,12 @@
-//
-//  TimelineViewController.m
-//  twitter
-//
-//  Created by emersonmalca on 5/28/18.
-//  Copyright © 2018 Emerson Malca. All rights reserved.
-//
-
 #import "TimelineViewController.h"
 #import "APIManager.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TweetCell.h"
 #import "ComposeViewController.h"
+#import "DetailsViewController.h"
 
-@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TimelineViewController () <ComposeViewControllerDelegate, DetailsViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 - (IBAction)tappedLogout:(UIButton *)sender;
 
@@ -28,14 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    
     [self getTimeline];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getTimeline) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSIndexPath *selectedIndPath = self.tableView.indexPathForSelectedRow;
+    if (selectedIndPath) {
+        [self.tableView deselectRowAtIndexPath:selectedIndPath animated:animated];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,18 +72,22 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
+    cell.tweet = tweet;
+    
     cell.nameLabel.text = tweet.user.name;
-    cell.screenNameLabel.text = tweet.user.screenName;
+    cell.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     cell.dateLabel.text = tweet.createdAtString;
     cell.tweetTextLabel.text = tweet.text;
-//    cell.replyCountLabel = tweet.
     cell.retweetCountLabel.text = [@(tweet.retweetCount) stringValue];
     cell.favoriteCountLabel.text = [@(tweet.favoriteCount) stringValue];
+    [cell.retweetView setSelected:tweet.retweeted];
+    [cell.likeView setSelected:tweet.favorited];
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     cell.profilePictureView.image = [UIImage imageWithData:urlData];
-    
+    cell.profilePictureView.layer.cornerRadius  = cell.profilePictureView.frame.size.width/2;
+
     return cell;
     
 }
@@ -96,12 +97,38 @@
     [self.tableView reloadData];
 }
 
+- (void)didRetweet:(Tweet *)tweet {
+    [self.tableView reloadData];
+}
+
+- (void)didFavorite:(Tweet *)tweet {
+    [self.tableView reloadData];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+
+    if ([segue.identifier  isEqual: @"ComposeViewControllerSegue"]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Tweet *tweet = self.arrayOfTweets[indexPath.row];
+        
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        
+        composeController.delegate = self;
+    } else if ([segue.identifier isEqual: @"DetailsViewControllerSegue"]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Tweet *tweet = self.arrayOfTweets[indexPath.row];
+        
+        DetailsViewController *detailViewController = [segue destinationViewController];
+        
+        detailViewController.delegate = self;
+        
+        detailViewController.tweet = tweet;
+    }
 }
 
 @end
