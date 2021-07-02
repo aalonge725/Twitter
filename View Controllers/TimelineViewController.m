@@ -74,7 +74,6 @@
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     cell.tweet = tweet;
     
-    // TODO: add updateWithTweet method to a model
     cell.nameLabel.text = tweet.user.name;
     cell.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     cell.dateLabel.text = tweet.createdAtString;

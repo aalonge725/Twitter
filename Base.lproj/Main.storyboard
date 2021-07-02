@@ -258,14 +258,8 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="782-Bn-Prl">
-                                <rect key="frame" x="10" y="154.5" width="36" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qcb-es-ccO">
-                                <rect key="frame" x="54" y="154.5" width="35" height="20"/>
+                                <rect key="frame" x="10" y="154.5" width="35" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -308,11 +302,8 @@
                         <viewLayoutGuide key="safeArea" id="RgR-lS-ZNY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Qcb-es-ccO" firstAttribute="leading" secondItem="782-Bn-Prl" secondAttribute="trailing" constant="8" id="2me-Ur-ZvF"/>
-                            <constraint firstItem="782-Bn-Prl" firstAttribute="leading" secondItem="RgR-lS-ZNY" secondAttribute="leading" constant="10" id="3lk-WD-2jT"/>
                             <constraint firstItem="5Ag-st-7gf" firstAttribute="leading" secondItem="Xi0-fa-CMk" secondAttribute="trailing" constant="10" id="4TU-uz-Khm"/>
                             <constraint firstItem="Xi0-fa-CMk" firstAttribute="top" secondItem="RgR-lS-ZNY" secondAttribute="top" constant="10" id="6fQ-Ri-i2n"/>
-                            <constraint firstItem="J7z-Rj-CWk" firstAttribute="top" secondItem="782-Bn-Prl" secondAttribute="bottom" constant="15" id="7Eu-Ey-270"/>
                             <constraint firstItem="5Ag-st-7gf" firstAttribute="top" secondItem="qZh-5L-XUh" secondAttribute="bottom" constant="8" id="CD3-Zq-eKh"/>
                             <constraint firstItem="qZh-5L-XUh" firstAttribute="leading" secondItem="Xi0-fa-CMk" secondAttribute="trailing" constant="10" id="Nsc-Gy-LPg"/>
                             <constraint firstItem="uYj-Jd-q8L" firstAttribute="centerY" secondItem="rAh-OS-dL3" secondAttribute="centerY" constant="2" id="R9d-9g-EWb"/>
@@ -326,8 +317,9 @@
                             <constraint firstItem="J7z-Rj-CWk" firstAttribute="leading" secondItem="RgR-lS-ZNY" secondAttribute="leading" constant="10" id="mNk-iu-cAI"/>
                             <constraint firstItem="Qcb-es-ccO" firstAttribute="top" secondItem="qQ6-cd-DrS" secondAttribute="bottom" constant="15" id="qw5-Sa-Bst"/>
                             <constraint firstItem="qQ6-cd-DrS" firstAttribute="leading" secondItem="RgR-lS-ZNY" secondAttribute="leading" constant="10" id="rkz-IO-m69"/>
-                            <constraint firstItem="782-Bn-Prl" firstAttribute="top" secondItem="qQ6-cd-DrS" secondAttribute="bottom" constant="15" id="v1Q-ah-RVb"/>
+                            <constraint firstItem="Qcb-es-ccO" firstAttribute="leading" secondItem="RgR-lS-ZNY" secondAttribute="leading" constant="10" id="tHC-DR-uc8"/>
                             <constraint firstItem="Xi0-fa-CMk" firstAttribute="leading" secondItem="RgR-lS-ZNY" secondAttribute="leading" constant="10" id="wQv-bg-932"/>
+                            <constraint firstItem="J7z-Rj-CWk" firstAttribute="top" secondItem="Qcb-es-ccO" secondAttribute="bottom" constant="15" id="xht-bI-asf"/>
                             <constraint firstItem="qZh-5L-XUh" firstAttribute="top" secondItem="RgR-lS-ZNY" secondAttribute="top" constant="10" id="z6a-u0-3ef"/>
                         </constraints>
                     </view>
@@ -341,7 +333,6 @@
                         <outlet property="retweetCountLabel" destination="8rM-6Z-dvF" id="5QE-fh-jjk"/>
                         <outlet property="retweetView" destination="J7z-Rj-CWk" id="pa0-Iy-hPb"/>
                         <outlet property="screenNameLabel" destination="5Ag-st-7gf" id="70D-gM-oM7"/>
-                        <outlet property="timeLabel" destination="782-Bn-Prl" id="fez-wT-7LU"/>
                         <outlet property="tweetTextLabel" destination="qQ6-cd-DrS" id="Bj1-Cs-Nxp"/>
                     </connections>
                 </viewController>

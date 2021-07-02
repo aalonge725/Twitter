@@ -87,7 +87,7 @@
                 NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
                 self.tweet.favorited = YES;
                 self.tweet.favoriteCount++;
-                [self refreshData]; // TODO: separate into refreshFavorites and refreshRetweets
+                [self refreshData];
             }
         }];
     } else {
